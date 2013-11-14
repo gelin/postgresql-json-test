@@ -3,8 +3,6 @@
 from __future__ import print_function
 
 import sys
-import random
-import string
 import datetime
 import json
 import psycopg2 as db
@@ -16,7 +14,7 @@ PGUSER = 'gelin'
 PGPASSWORD = 'gelin'
 PGDATABASE = 'json_test'
 
-REPEAT = 3
+REPEAT = 10
 
 
 connection = db.connect(host=PGHOST, user=PGUSER, password=PGPASSWORD, database=PGDATABASE)
@@ -39,11 +37,11 @@ def select_once(query, format=None):
         traceback.print_exc(file=sys.stderr)
     end = datetime.datetime.now()
     print('selected', count, 'rows in', end - start, file=sys.stderr)
-    return (count, end - start)
+    return count, end - start
 
 
 def select(query, format=None, label=''):
-    print('selecting as', label, '...', file=sys.stderr)
+    print('selecting', label, '...', file=sys.stderr)
     total_rows = 0
     total_time = datetime.timedelta()
     min_time = datetime.timedelta(days=1)
@@ -60,5 +58,21 @@ def select(query, format=None, label=''):
     print(label, ':', total_time / total_rows, 'average time for a row', file=sys.stderr)
 
 
+def get_json(row):
+    return row[0]
+
+
+def format_json(row):
+    obj = {}
+    idx = 0
+    for value in row:
+        obj['data%i' % idx] = value
+        idx += 1
+    return json.dumps(obj)
+
+
 if __name__ == '__main__':
-    select('SELECT * FROM test_values;', label='just rows of values')
+    select('SELECT * FROM test_values;', label='values as values')
+    select('SELECT data FROM test_json;', get_json, label='json as json')
+    select('SELECT * FROM test_values;', format_json, label='values as json (serialization)')
+    select('SELECT row_to_json(test_values) FROM test_values;', get_json, label='values as json (row_to_json)')
