@@ -72,7 +72,15 @@ def format_json(row):
 
 
 if __name__ == '__main__':
-    select('SELECT * FROM test_values;', label='values as values')
-    select('SELECT data FROM test_json;', get_json, label='json as json')
-    select('SELECT * FROM test_values;', format_json, label='values as json (serialization)')
-    select('SELECT row_to_json(test_values) FROM test_values;', get_json, label='values as json (row_to_json)')
+    #select('SELECT * FROM test_values;', label='values as values')
+    #select('SELECT data FROM test_json;', get_json, label='json as json')
+    #select('SELECT * FROM test_values;', format_json, label='values as json (serialization)')
+    #select('SELECT row_to_json(test_values) FROM test_values;', get_json, label='values as json (row_to_json)')
+    select('SELECT data0, data1, data2, data3, data4 FROM test_values;', label='values as values')
+    select("SELECT data->'data1', data->'data2', data->'data3', data->'data4', data->'data5' FROM test_json;", label='json as values')
+    select('SELECT data0, data1, data2, data3, data4 FROM test_values;', format_json, label='values as json (serialization)')
+    select('''WITH r AS ( SELECT data0, data1, data2, data3, data4 FROM test_values )
+              SELECT row_to_json(r.*) FROM r;''', get_json, label='values as json (row_to_json)')
+    select("""WITH r AS (
+              SELECT data->'data1' data1, data->'data2' data2, data->'data3' data3, data->'data4' data4, data->'data5' data5 FROM test_json
+              ) SELECT row_to_json(r.*) FROM r;""", label='json as json (row_to_json)')
