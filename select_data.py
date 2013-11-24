@@ -83,4 +83,42 @@ if __name__ == '__main__':
               SELECT row_to_json(r.*) FROM r;''', get_json, label='values as json (row_to_json)')
     select("""WITH r AS (
               SELECT data->'data1' data1, data->'data2' data2, data->'data3' data3, data->'data4' data4, data->'data5' data5 FROM test_json
-              ) SELECT row_to_json(r.*) FROM r;""", label='json as json (row_to_json)')
+              ) SELECT row_to_json(r.*) FROM r;""", get_json, label='json as json (row_to_json)')
+    # select('SELECT data0 FROM test_values;', label='1 column')
+    # select('SELECT data0, data1 FROM test_values;', label='2 columns')
+    # select('SELECT data0, data1, data2 FROM test_values;', label='3 columns')
+    # select('SELECT data0, data1, data2, data3 FROM test_values;', label='4 columns')
+    # select('SELECT data0, data1, data2, data3, data4 FROM test_values;', label='5 columns')
+    # select('SELECT data0, data1, data2, data3, data4, data5 FROM test_values;', label='6 columns')
+    # select('SELECT data0, data1, data2, data3, data4, data5, data6 FROM test_values;', label='7 columns')
+    # select('SELECT data0, data1, data2, data3, data4, data5, data6, data7 FROM test_values;', label='8 columns')
+    # select('SELECT data0, data1, data2, data3, data4, data5, data6, data7, data8 FROM test_values;', label='9 columns')
+    # select('SELECT * FROM test_values;', label='whole row')
+    # select("""WITH r AS ( SELECT data->'data0' data0 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='1 json field')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='2 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='3 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='4 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3, data->'data4' data4 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='5 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3, data->'data4' data4, data->'data5' data5 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='6 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3, data->'data4' data4, data->'data5' data5,
+    #                              data->'data6' data6 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='7 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3, data->'data4' data4, data->'data5' data5,
+    #                              data->'data6' data6, data->'data7' data7 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='8 json fields')
+    # select("""WITH r AS ( SELECT data->'data0' data0, data->'data1' data1, data->'data2' data2,
+    #                              data->'data3' data3, data->'data4' data4, data->'data5' data5,
+    #                              data->'data6' data6, data->'data7' data7, data->'data8' data8 FROM test_json
+    #            ) SELECT row_to_json(r.*) FROM r;""", get_json, label='9 json fields')
+    # select('SELECT data FROM test_json;', get_json, label='whole json doc')
