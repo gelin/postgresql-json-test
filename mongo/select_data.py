@@ -52,3 +52,18 @@ if __name__ == '__main__':
     select(None, 'whole doc')
     select({'_id': False}, 'without _id')
     select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True}, 'half of values')
+    # select({'_id': False, 'data0': True}, '1 field')
+    # select({'_id': False, 'data0': True, 'data1': True}, '2 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True}, '3 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True}, '4 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True}, '5 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True, 'data5': True},
+    #        '6 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True, 'data5': True,
+    #         'data6': True}, '7 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True, 'data5': True,
+    #         'data6': True, 'data7': True}, '8 fields')
+    # select({'_id': False, 'data0': True, 'data1': True, 'data2': True, 'data3': True, 'data4': True, 'data5': True,
+    #         'data6': True, 'data7': True, 'data8': True}, '9 fields')
+    # select({'_id': False}, '10 fields')
+    # select(None, 'whole doc')
